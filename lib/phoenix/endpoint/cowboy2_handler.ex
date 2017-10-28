@@ -74,7 +74,7 @@ defmodule Phoenix.Endpoint.Cowboy2Handler do
     config = Keyword.put_new(config, :dispatch, [{:_, dispatches}])
 
     {ref, mfa, type, timeout, kind, modules} =
-      Plug.Adapters.Cowboy2.child_spec(scheme, endpoint, [], config)
+      Plug.Adapters.Cowboy2.child_spec(scheme:  scheme, plug: {endpoint, []}, options: config)
 
     # Rewrite MFA for proper error reporting
     mfa = {__MODULE__, :start_link, [scheme, endpoint, mfa]}
